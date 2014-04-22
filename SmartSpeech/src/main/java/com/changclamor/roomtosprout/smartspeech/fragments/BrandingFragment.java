@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.changclamor.roomtosprout.smartspeech.R;
 /**
  * Created by androidmike on 4/19/14.
  */
-public class BrandingFragment extends Fragment {
+public class BrandingFragment extends TrackingFragment {
 
 	public static int DURATION = 5000;
 

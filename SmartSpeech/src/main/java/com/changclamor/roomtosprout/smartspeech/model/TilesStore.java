@@ -1,20 +1,22 @@
 package com.changclamor.roomtosprout.smartspeech.model;
 
-import java.net.Authenticator.RequestorType;
 import java.util.HashMap;
 
+import com.changclamor.roomtosprout.smartspeech.BusProvider;
+import com.changclamor.roomtosprout.smartspeech.controller.ProfileController;
 import com.changclamor.roomtosprout.smartspeech.controller.TransportController.RequestType;
 import com.changclamor.roomtosprout.smartspeech.controller.TransportController.TransportControllerListener;
+import com.changclamor.roomtosprout.smartspeech.model.TilesEvents.TileImpressionEvent;
 import com.changclamor.roomtosprout.smartspeech.transport.AbstractResponse;
-import com.changclamor.roomtosprout.smartspeech.transport.TilesFetchResponse;
+import com.squareup.otto.Subscribe;
 
 public class TilesStore implements TransportControllerListener {
 
 	// master ID to tiles mapping collection
 	private HashMap<String, Tile> tilesMap = new HashMap<String, Tile>();
 
-	public class TileStore {
-
+	public TilesStore() {
+		super();
 	}
 
 	public void loadTiles() {
@@ -39,4 +41,5 @@ public class TilesStore implements TransportControllerListener {
 			return;
 		}
 	}
+
 }
