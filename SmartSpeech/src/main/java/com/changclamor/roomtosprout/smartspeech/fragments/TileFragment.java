@@ -20,6 +20,7 @@ import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.model.TilesEvents.TileImpressionEvent;
+import com.changclamor.roomtosprout.smartspeech.style.TileStyle;
 import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 
 /**
@@ -34,6 +35,7 @@ public class TileFragment extends Fragment {
 	private TextView tileText;
 	private View tileButton;
 	private String tileId = null;
+	private View mainView = null;
 
 	public TileFragment() {
 		super();
@@ -78,12 +80,30 @@ public class TileFragment extends Fragment {
 			tileId = getArguments().getString(Constants.EXTRA_TILE_ID);
 		}
 		Tile tile = TilesController.getInstance().getTile(tileId);
+
+		applyStyle(tile.getStyle());
 		UIUtil.setBackground(tileButton,
 				getBackgroundDrawawable(tile.getColor()));
 		tileImage.setImageResource(tile.getDrawableResId());
 		tileText.setText(tile.getLabel());
-
+		mainView = view;
 		return view;
+	}
+
+	private void applyStyle(TileStyle style) {
+		switch (style) {
+		case SMALL:
+			break;
+		case LARGE:
+			break;
+		case MEDIUM:
+			mainView.getLayoutParams().width = 100;
+			mainView.getLayoutParams().height = 100;
+			break;
+		case XLARGE:
+			break;
+		}
+
 	}
 
 	private Drawable getBackgroundDrawawable(int color) {

@@ -65,4 +65,8 @@ public class Tile {
 		this.style = style;
 	}
 
+	public TileStyle getStyle() {
+		return style;
+	}
+
 }

@@ -10,11 +10,13 @@ public class TilesController {
 
 	private static final String YOU_ID = "you";
 	private static final String ME_ID = "me";
-	private static final String HE_SHE_THEY_ID = "they";
-	private static final String IT_ID = "it";
-	
+	private static final String THIRD_PERSON_ID = "3rd";
+	private static final String FEELINGS_ID = "feelings";
+	private static final String QUESTIONS_ID = "questions";
+
 	private static TilesController instance = null;
-	private String[] homeTilesId = { ME_ID, YOU_ID, HE_SHE_THEY_ID, IT_ID };
+	private String[] homeTilesId = { ME_ID, YOU_ID, THIRD_PERSON_ID,
+			FEELINGS_ID };
 	private HashMap<String, Tile> tilesMap = null;
 
 	public static void init() {
@@ -35,19 +37,29 @@ public class TilesController {
 		t2.setLabel("Me");
 		t2.setRecScore(0);
 		t2.setStyle(TileStyle.XLARGE);
+		t2.setStyle(TileStyle.MEDIUM);
 		tilesMap.put(ME_ID, t2);
 
-		Tile t3 = new Tile(HE_SHE_THEY_ID);
+		Tile t3 = new Tile(THIRD_PERSON_ID);
 		t3.setDrawableResId(R.drawable.icon_me);
-		t3.setLabel("Me");
+		t3.setLabel("3rd Person");
 		t3.setRecScore(0);
-		tilesMap.put(HE_SHE_THEY_ID, t3);
+		t3.setStyle(TileStyle.MEDIUM);
+		tilesMap.put(THIRD_PERSON_ID, t3);
 
-		Tile t4 = new Tile(IT_ID);
+		Tile t4 = new Tile(FEELINGS_ID);
 		t4.setDrawableResId(R.drawable.icon_me);
-		t4.setLabel("Me");
+		t4.setLabel("Feelings");
 		t4.setRecScore(0);
-		tilesMap.put(IT_ID, t4);
+		t4.setStyle(TileStyle.MEDIUM);
+		tilesMap.put(FEELINGS_ID, t4);
+
+		Tile t5 = new Tile(QUESTIONS_ID);
+		t5.setDrawableResId(R.drawable.icon_me);
+		t5.setLabel("Questions");
+		t5.setRecScore(0);
+		t5.setStyle(TileStyle.MEDIUM);
+		tilesMap.put(FEELINGS_ID, t5);
 	}
 
 	public String[] getHomeTilesId() {
