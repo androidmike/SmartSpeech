@@ -7,44 +7,36 @@ import android.view.ViewGroup;
 
 import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
-import com.changclamor.roomtosprout.smartspeech.model.Tile;
 
 /**
  * Created by androidmike on 4/19/14.
  */
 public class HomeFragment extends TrackingFragment {
 
-	private ViewGroup buttonsContainer1, buttonsContainer2;
-	private static final int NUM_PER_ROW = 2;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.home_layout, container, false);
 
-		buttonsContainer1 = (ViewGroup) view
-				.findViewById(R.id.home_buttons_container_1);
-		buttonsContainer2 = (ViewGroup) view
-				.findViewById(R.id.home_buttons_container_2);
-
-		int col = 1;
-		// Load home tiles
-		for (String id : TilesController.getInstance().getHomeTilesId()) {
-			int containerId;
-			if (col == NUM_PER_ROW) {
-				col = 0;
-				containerId = R.id.home_buttons_container_2;
-			} else {
-				containerId = R.id.home_buttons_container_1;
-			}
-			TileFragment tileFragment = TileFragment.newInstance(id);
-
-			android.support.v4.app.FragmentTransaction ft = getChildFragmentManager()
-					.beginTransaction();
-			ft.add(containerId, tileFragment).commit();
-			col++;
-		}
-
+		TileFragment meTile = TileFragment.newInstance(TilesController.ME_ID);
+		TileFragment youTile = TileFragment.newInstance(TilesController.YOU_ID);
+		TileFragment questionTile = TileFragment
+				.newInstance(TilesController.QUESTIONS_ID);
+		TileFragment thirdPersonTile = TileFragment
+				.newInstance(TilesController.THIRD_PERSON_ID);
+		TileFragment feelingsTile = TileFragment
+				.newInstance(TilesController.FEELINGS_ID);
+		android.support.v4.app.FragmentTransaction ft = getChildFragmentManager()
+				.beginTransaction();
+		ft.add(R.id.large_tile_1, youTile).commit();
+		ft = getChildFragmentManager().beginTransaction();
+		ft.add(R.id.large_tile_2, meTile).commit();
+		ft = getChildFragmentManager().beginTransaction();
+		ft.add(R.id.small_tile_1, questionTile).commit();
+		ft = getChildFragmentManager().beginTransaction();
+		ft.add(R.id.small_tile_2, thirdPersonTile).commit();
+		ft = getChildFragmentManager().beginTransaction();
+		ft.add(R.id.small_tile_3, feelingsTile).commit();
 		return view;
 	}
 }

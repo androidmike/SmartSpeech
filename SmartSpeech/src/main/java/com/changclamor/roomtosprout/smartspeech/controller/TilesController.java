@@ -2,17 +2,24 @@ package com.changclamor.roomtosprout.smartspeech.controller;
 
 import java.util.HashMap;
 
+import android.content.res.Resources.NotFoundException;
+
 import com.changclamor.roomtosprout.smartspeech.R;
+import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.style.TileStyle;
+import com.changclamor.roomtosprout.smartspeech.transport.GetTilesResponse;
+import com.changclamor.roomtosprout.smartspeech.util.TransportUtil;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class TilesController {
 
-	private static final String YOU_ID = "you";
-	private static final String ME_ID = "me";
-	private static final String THIRD_PERSON_ID = "3rd";
-	private static final String FEELINGS_ID = "feelings";
-	private static final String QUESTIONS_ID = "questions";
+	public static final String YOU_ID = "you";
+	public static final String ME_ID = "me";
+	public static final String THIRD_PERSON_ID = "third_person";
+	public static final String FEELINGS_ID = "feelings";
+	public static final String QUESTIONS_ID = "questions";
 
 	private static TilesController instance = null;
 	private String[] homeTilesId = { ME_ID, YOU_ID, THIRD_PERSON_ID,
@@ -21,45 +28,26 @@ public class TilesController {
 
 	public static void init() {
 		instance = new TilesController();
-		instance.loadtilesMap();
+		instance.loadTilesMap();
 	}
 
-	private void loadtilesMap() {
+	private void loadTilesMap() {
+		Gson gson = new GsonBuilder().create();
+		String json = null;
+		try {
+			json = TransportUtil.convertStreamToString(SmartSpeechApp
+					.getContext().getResources().openRawResource(R.raw.tiles));
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		GetTilesResponse r = gson.fromJson(json, GetTilesResponse.class);
+
 		tilesMap = new HashMap<String, Tile>();
-		Tile t1 = new Tile(YOU_ID);
-		t1.setDrawableResId(R.drawable.icon_you);
-		t1.setLabel("You");
-		t1.setRecScore(0);
-		tilesMap.put(YOU_ID, t1);
-
-		Tile t2 = new Tile(YOU_ID);
-		t2.setDrawableResId(R.drawable.icon_me);
-		t2.setLabel("Me");
-		t2.setRecScore(0);
-		t2.setStyle(TileStyle.XLARGE);
-		t2.setStyle(TileStyle.MEDIUM);
-		tilesMap.put(ME_ID, t2);
-
-		Tile t3 = new Tile(THIRD_PERSON_ID);
-		t3.setDrawableResId(R.drawable.icon_me);
-		t3.setLabel("3rd Person");
-		t3.setRecScore(0);
-		t3.setStyle(TileStyle.MEDIUM);
-		tilesMap.put(THIRD_PERSON_ID, t3);
-
-		Tile t4 = new Tile(FEELINGS_ID);
-		t4.setDrawableResId(R.drawable.icon_me);
-		t4.setLabel("Feelings");
-		t4.setRecScore(0);
-		t4.setStyle(TileStyle.MEDIUM);
-		tilesMap.put(FEELINGS_ID, t4);
-
-		Tile t5 = new Tile(QUESTIONS_ID);
-		t5.setDrawableResId(R.drawable.icon_me);
-		t5.setLabel("Questions");
-		t5.setRecScore(0);
-		t5.setStyle(TileStyle.MEDIUM);
-		tilesMap.put(FEELINGS_ID, t5);
+		for (Tile t : r.tiles) {
+			tilesMap.put(t.getId(), t);
+		}
 	}
 
 	public String[] getHomeTilesId() {

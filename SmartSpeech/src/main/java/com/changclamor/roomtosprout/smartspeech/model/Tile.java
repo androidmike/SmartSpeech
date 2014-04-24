@@ -1,16 +1,17 @@
 package com.changclamor.roomtosprout.smartspeech.model;
 
-import com.changclamor.roomtosprout.smartspeech.style.TileStyle;
+import java.util.List;
 
 import android.graphics.Color;
 
 public class Tile {
 	private int drawableResId;
 	private String label;
-	private int recommendationScore;
-	private TileStyle style;
+	private int recScore;
+	private String style;
 	private String id;
-	private int color = com.changclamor.roomtosprout.smartspeech.R.color.default_tile;
+	private String color;
+	private List<String> tags;
 
 	public Tile(String id) {
 		this.id = id;
@@ -40,33 +41,13 @@ public class Tile {
 		this.label = label;
 	}
 
-	public int getRecScore() {
-		return recommendationScore;
-	}
-
-	public void setRecScore(int recommendationScore) {
-		this.recommendationScore = recommendationScore;
-	}
-
 	public void onShown() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void setColor(String hex) {
-		this.color = Color.parseColor(hex);
-	}
-
 	public int getColor() {
-		return color;
-	}
-
-	public void setStyle(TileStyle style) {
-		this.style = style;
-	}
-
-	public TileStyle getStyle() {
-		return style;
+		return Color.parseColor(color);
 	}
 
 }

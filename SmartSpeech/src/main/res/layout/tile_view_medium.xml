@@ -2,22 +2,24 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="40dp" >
 
     <View
         android:id="@+id/tile_button"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_tile" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
 
-    <TextView
+    <com.changclamor.roomtosprout.smartspeech.widgets.AutoResizeTextView
         android:id="@+id/tile_text"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal" />
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:textSize="60sp" />
 
     <ImageView
         android:id="@+id/tile_image"

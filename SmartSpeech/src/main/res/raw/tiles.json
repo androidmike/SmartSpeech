@@ -1,0 +1,45 @@
+{
+  "tiles": [
+    {
+      "color": "#739bd1",
+      "label": "Me",
+      "id": "me",
+      "rec_score": 100,
+      "style": "large"
+    },
+    {
+      "color": "#75c15a",
+      "label": "You",
+      "id": "you",
+      "rec_score": 100,
+      "style": "large"
+    },
+    {
+      "color": "#ea9723",
+      "label": "He/She/They/It",
+      "id": "third_person",
+      "rec_score": 100,
+      "style": "large"
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "Feelings",
+      "id": "feelings",
+      "rec_score": 100,
+      "style": "large"
+            "tags": [
+      home, me
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "Questions",
+      "id": "questions",
+      "rec_score": 100,
+      "style": "large"
+      "tags": [
+      home, you, third_person
+      ]
+    }
+  ]
+}

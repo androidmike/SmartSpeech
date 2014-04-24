@@ -20,7 +20,7 @@ import com.changclamor.roomtosprout.smartspeech.R;
  */
 public class BrandingFragment extends TrackingFragment {
 
-	public static int DURATION = 5000;
+	public static int DURATION = 400;
 
 	private View logo = null;
 

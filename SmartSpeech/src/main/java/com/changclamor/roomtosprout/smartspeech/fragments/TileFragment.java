@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -66,55 +67,77 @@ public class TileFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.tile_view, container, false);
-		tileImage = (ImageView) view.findViewById(R.id.tile_image);
-		tileText = (TextView) view.findViewById(R.id.tile_text);
-		tileButton = (View) view.findViewById(R.id.tile_button);
+
+		if (tileId == null && getArguments() != null) {
+			tileId = getArguments().getString(Constants.EXTRA_TILE_ID);
+		}
+
+		Tile tile = TilesController.getInstance().getTile(tileId);
+		/*
+		 * if (tile.getStyle() == TileStyle.LARGE) { mainView =
+		 * inflater.inflate(R.layout.tile_view_large, container, false); } else
+		 * {
+		 * 
+		 * mainView = inflater.inflate(R.layout.tile_view_medium, container,
+		 * false); }
+		 */
+
+		mainView = inflater
+				.inflate(R.layout.tile_view_medium, container, false);
+		tileImage = (ImageView) mainView.findViewById(R.id.tile_image);
+		tileText = (TextView) mainView.findViewById(R.id.tile_text);
+		tileButton = (View) mainView.findViewById(R.id.tile_button);
 
 		Typeface face = Typeface.createFromAsset(SmartSpeechApp.getContext()
 				.getAssets(), getResources().getString(R.string.thin));
 		tileText.setTypeface(face);
-		tileText.setTextSize(100f);
-		tileText.setTextColor(Color.WHITE);
-		if (tileId == null) {
-			tileId = getArguments().getString(Constants.EXTRA_TILE_ID);
-		}
-		Tile tile = TilesController.getInstance().getTile(tileId);
 
-		applyStyle(tile.getStyle());
-		UIUtil.setBackground(tileButton,
-				getBackgroundDrawawable(tile.getColor()));
-		tileImage.setImageResource(tile.getDrawableResId());
+		tileText.setTextColor(Color.WHITE);
+
+		UIUtil.setBackground(tileButton, getBackgroundDrawable(tile.getColor()));
+		// tileImage.setImageResource(tile.getDrawableResId());
 		tileText.setText(tile.getLabel());
-		mainView = view;
-		return view;
+
+		return mainView;
 	}
 
 	private void applyStyle(TileStyle style) {
+
 		switch (style) {
 		case SMALL:
 			break;
 		case LARGE:
 			break;
 		case MEDIUM:
-			mainView.getLayoutParams().width = 100;
-			mainView.getLayoutParams().height = 100;
 			break;
 		case XLARGE:
 			break;
 		}
-
 	}
 
-	private Drawable getBackgroundDrawawable(int color) {
-		return getBackgroundDrawawable(color, color);
+	// No gradient background
+	private Drawable getBackgroundDrawable(int color) {
+		return getBackgroundDrawable(color, color);
 	}
 
-	private Drawable getBackgroundDrawawable(int bottomColor, int topColor) {
-		GradientDrawable gradient = new GradientDrawable(
-				Orientation.BOTTOM_TOP, new int[] { bottomColor, topColor });
-		gradient.setShape(GradientDrawable.RECTANGLE);
-		gradient.setCornerRadius(10.f);
-		return gradient;
+	private Drawable getBackgroundDrawable(int bottomColor, int topColor) {
+		GradientDrawable pressed = new GradientDrawable(Orientation.BOTTOM_TOP,
+				new int[] { bottomColor, topColor });
+		pressed.setShape(GradientDrawable.RECTANGLE);
+		pressed.setCornerRadius(10.f);
+		pressed.setStroke(0, Color.parseColor("#00000000"));
+
+		GradientDrawable normal = new GradientDrawable(Orientation.BOTTOM_TOP,
+				new int[] { bottomColor, topColor });
+		normal.setShape(GradientDrawable.RECTANGLE);
+		normal.setCornerRadius(10.f);
+		normal.setStroke(10, Color.parseColor("#00000000"));
+
+		StateListDrawable states = new StateListDrawable();
+		states.addState(new int[] { android.R.attr.state_pressed }, pressed);
+		states.addState(new int[] { android.R.attr.state_focused }, pressed);
+		states.addState(new int[] {}, normal);
+		return states;
+
 	}
 }
