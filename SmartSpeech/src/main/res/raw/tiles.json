@@ -5,21 +5,42 @@
       "label": "Me",
       "id": "me",
       "rec_score": 100,
-      "style": "large"
+      "style": "large",
+      "is_leaf": false,
+      "is_audible": true,
+      "tags": [
+        "audible",
+        "home",
+        "subject",
+        "me"
+      ],
+      "followed_by_tags": [
+        "verb"
+      ]
     },
     {
       "color": "#75c15a",
       "label": "You",
       "id": "you",
       "rec_score": 100,
-      "style": "large"
-    }, 
+      "style": "large",
+      "tags": [
+        "home",
+        "me",
+        "leaf"
+      ]
+    },
     {
       "color": "#ea9723",
       "label": "He/She/They/It",
       "id": "third_person",
       "rec_score": 100,
-      "style": "large"
+      "style": "large",
+      "tags": [
+        "home",
+        "me",
+        "leaf"
+      ]
     },
     {
       "color": "#a6c9f9",
@@ -27,8 +48,9 @@
       "id": "feelings",
       "rec_score": 100,
       "style": "large",
-            "tags": [
-      home, me
+      "tags": [
+        "home",
+        "me"
       ]
     },
     {
@@ -38,7 +60,9 @@
       "rec_score": 100,
       "style": "large",
       "tags": [
-      home, you, third_person
+        "home",
+        "you",
+        "third_person"
       ]
     }
   ]

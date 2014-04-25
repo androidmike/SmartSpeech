@@ -11,7 +11,10 @@ public class Tile {
 	private String style;
 	private String id;
 	private String color;
+	private boolean isAudible; // Can be inserted into the text or be said on
+								// its own
 	private List<String> tags;
+	private boolean isLeaf; // Likely the end of the sentence
 
 	public Tile(String id) {
 		this.id = id;
@@ -49,5 +52,6 @@ public class Tile {
 	public int getColor() {
 		return Color.parseColor(color);
 	}
+
 
 }

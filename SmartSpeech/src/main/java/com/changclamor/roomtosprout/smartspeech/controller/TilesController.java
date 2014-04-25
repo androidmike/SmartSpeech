@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class TilesController {
-
+	public static String RES_URL = "http://roomtosprout.com/smartspeech/res/kids.zip";
 	public static final String YOU_ID = "you";
 	public static final String ME_ID = "me";
 	public static final String THIRD_PERSON_ID = "third_person";
@@ -53,10 +53,9 @@ public class TilesController {
 	}
 
 	private void loadResources() {
-		String url = "http://roomtosprout.com/smartspeech/res/kids.zip";
 		final DownloadTask downloadTask = new DownloadTask(
 				SmartSpeechApp.getContext());
-		downloadTask.execute(url);
+		downloadTask.execute(RES_URL);
 	}
 
 	public String[] getHomeTilesId() {

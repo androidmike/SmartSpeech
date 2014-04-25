@@ -1,14 +1,19 @@
 package com.changclamor.roomtosprout.smartspeech.data;
 
 import java.io.File;
-
-import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
+import java.io.IOException;
+import java.io.InputStream;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+
+import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 
 public class StorageUtils {
 	public static final File STORAGE_PATH_FILE = SmartSpeechApp.getContext()
@@ -59,5 +64,18 @@ public class StorageUtils {
 				}
 			}
 		});
+	}
+
+	public static Bitmap getBitmapFromAsset(String packName, String strName) {
+		AssetManager assetManager = SmartSpeechApp.getContext().getAssets();
+		InputStream istr = null;
+		try {
+			istr = assetManager.open("tiles_resources" + File.separator
+					+ packName + File.separator + strName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Bitmap bitmap = BitmapFactory.decodeStream(istr);
+		return bitmap;
 	}
 }

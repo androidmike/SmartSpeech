@@ -1,5 +1,11 @@
 package com.changclamor.roomtosprout.smartspeech.fragments;
 
+import java.util.Random;
+
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -7,9 +13,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,16 +27,19 @@ import com.changclamor.roomtosprout.smartspeech.Constants;
 import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
+import com.changclamor.roomtosprout.smartspeech.data.StorageUtils;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.model.TilesEvents.TileImpressionEvent;
-import com.changclamor.roomtosprout.smartspeech.style.TileStyle;
 import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 
 /**
  * Created by androidmike on 4/19/14.
  */
-public class TileFragment extends Fragment {
+@SuppressLint("NewApi")
+public class TileFragment extends Fragment implements OnInitListener,
+		OnClickListener {
 
+	private static final String KIDS = "kids";
 	private static final boolean ONLY_RECORD_IF_NEWLY_SHOWN = true;
 	private boolean isShown = false;
 
@@ -37,9 +48,12 @@ public class TileFragment extends Fragment {
 	private View tileButton;
 	private String tileId = null;
 	private View mainView = null;
+	private TextToSpeech tts;
+	private Tile tile = null;
 
 	public TileFragment() {
 		super();
+		tts = new TextToSpeech(SmartSpeechApp.getContext(), this);
 	}
 
 	// Convenience factory method
@@ -72,7 +86,7 @@ public class TileFragment extends Fragment {
 			tileId = getArguments().getString(Constants.EXTRA_TILE_ID);
 		}
 
-		Tile tile = TilesController.getInstance().getTile(tileId);
+		tile = TilesController.getInstance().getTile(tileId);
 		/*
 		 * if (tile.getStyle() == TileStyle.LARGE) { mainView =
 		 * inflater.inflate(R.layout.tile_view_large, container, false); } else
@@ -87,7 +101,7 @@ public class TileFragment extends Fragment {
 		tileImage = (ImageView) mainView.findViewById(R.id.tile_image);
 		tileText = (TextView) mainView.findViewById(R.id.tile_text);
 		tileButton = (View) mainView.findViewById(R.id.tile_button);
-
+		tileButton.setOnClickListener(this);
 		Typeface face = Typeface.createFromAsset(SmartSpeechApp.getContext()
 				.getAssets(), getResources().getString(R.string.thin));
 		tileText.setTypeface(face);
@@ -95,7 +109,10 @@ public class TileFragment extends Fragment {
 		tileText.setTextColor(Color.WHITE);
 
 		UIUtil.setBackground(tileButton, getBackgroundDrawable(tile.getColor()));
-		// tileImage.setImageResource(tile.getDrawableResId());
+
+		tileImage.setImageBitmap(StorageUtils.getBitmapFromAsset(KIDS, "full_"
+				+ tileId + ".png"));
+
 		tileText.setText(tile.getLabel());
 
 		return mainView;
@@ -125,5 +142,26 @@ public class TileFragment extends Fragment {
 		states.addState(new int[] {}, normal);
 		return states;
 
+	}
+
+	@Override
+	public void onInit(int status) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		String spokenWords = tile.getLabel().replace("/", " ");
+		tts.speak(spokenWords, TextToSpeech.QUEUE_FLUSH, null);
+		// tts.speak(tile.getLabel(), TextToSpeech.QUEUE_FLUSH, null);
+	}
+
+	@Override
+	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+		Animator animator = AnimatorInflater.loadAnimator(
+				SmartSpeechApp.getContext(), R.animator.card_flip_left_in);
+		animator.setStartDelay(new Random().nextInt(2000));
+		return animator;
 	}
 }
