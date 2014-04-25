@@ -1,12 +1,10 @@
 package com.changclamor.roomtosprout.smartspeech.fragments;
 
+import android.support.v4.app.Fragment;
 
-import android.annotation.SuppressLint;
-import android.app.Fragment;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.google.android.gms.analytics.HitBuilders;
 
-@SuppressLint("NewApi")
 public class TrackingFragment extends Fragment {
 
 	@Override

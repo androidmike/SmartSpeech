@@ -36,7 +36,7 @@ public class BrandingFragment extends TrackingFragment {
 		return view;
 	}
 
-	@SuppressLint("NewApi")
+	
 	public void onResume() {
 		super.onResume();
 

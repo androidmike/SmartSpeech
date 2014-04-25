@@ -4,8 +4,6 @@ import java.util.Random;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -15,6 +13,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +34,7 @@ import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 /**
  * Created by androidmike on 4/19/14.
  */
-@SuppressLint("NewApi")
+
 public class TileFragment extends Fragment implements OnInitListener,
 		OnClickListener {
 

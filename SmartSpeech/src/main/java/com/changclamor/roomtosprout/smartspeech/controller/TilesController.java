@@ -7,7 +7,6 @@ import android.content.res.Resources.NotFoundException;
 import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
-import com.changclamor.roomtosprout.smartspeech.style.TileStyle;
 import com.changclamor.roomtosprout.smartspeech.transport.GetTilesResponse;
 import com.changclamor.roomtosprout.smartspeech.util.TransportUtil;
 import com.google.gson.Gson;
