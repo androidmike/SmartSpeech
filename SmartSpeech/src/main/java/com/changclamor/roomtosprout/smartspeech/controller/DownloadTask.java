@@ -18,6 +18,7 @@ import com.changclamor.roomtosprout.smartspeech.data.StorageUtils;
 public class DownloadTask extends AsyncTask<String, Integer, String> {
 	private Context context;
 	private PowerManager.WakeLock mWakeLock;
+	private String fileName;
 
 	public DownloadTask(Context context) {
 		this.context = context;
@@ -57,7 +58,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 					.show();
 
 		StorageUtils.getInstance();
-		StorageUtils.unzip();
+		StorageUtils.unzip(fileName);
 	}
 
 	@Override
@@ -66,6 +67,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 		OutputStream output = null;
 		HttpURLConnection connection = null;
 		try {
+			fileName = parseFileName(sUrl[0]);
 			URL url = new URL(sUrl[0]);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.connect();
@@ -83,8 +85,8 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
 			// download the file
 			input = connection.getInputStream();
-			output = new FileOutputStream(StorageUtils.EXTERNAL_DIR
-					+ File.separator + "kids.zip");
+			output = new FileOutputStream(StorageUtils.STORAGE_PATH_FILE
+					+ File.separator + fileName);
 
 			byte data[] = new byte[4096];
 			long total = 0;
@@ -116,5 +118,11 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 				connection.disconnect();
 		}
 		return null;
+	}
+
+	private String parseFileName(String string) {
+		String fileName = "";
+		fileName = string.substring(string.lastIndexOf(File.separator) + 1);
+		return fileName;
 	}
 }

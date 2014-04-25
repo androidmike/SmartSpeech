@@ -2,6 +2,8 @@ package com.changclamor.roomtosprout.smartspeech.data;
 
 import java.io.File;
 
+import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
+
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import android.os.Environment;
@@ -9,8 +11,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 public class StorageUtils {
-	public static final File EXTERNAL_DIR = Environment
-			.getExternalStorageDirectory();
+	public static final File STORAGE_PATH_FILE = SmartSpeechApp.getContext()
+			.getFilesDir();
 	private static StorageUtils instance = new StorageUtils();
 
 	public static StorageUtils getInstance() {
@@ -35,16 +37,15 @@ public class StorageUtils {
 		return false;
 	}
 
-	public static void unzip() {
+	public static void unzip(final String fileName) {
 		Handler handler = new Handler(Looper.getMainLooper());
 		handler.post(new Runnable() {
 
 			@Override
 			public void run() {
 
-				String source = EXTERNAL_DIR + File.separator + "kids.zip";
-				String destination = EXTERNAL_DIR + File.separator
-						+ "smartspeech" + File.separator + "res";
+				String source = STORAGE_PATH_FILE + File.separator + fileName;
+				String destination = STORAGE_PATH_FILE + File.separator + "res";
 				String password = "password";
 
 				try {
