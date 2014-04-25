@@ -13,7 +13,7 @@
       "id": "you",
       "rec_score": 100,
       "style": "large"
-    },
+    }, 
     {
       "color": "#ea9723",
       "label": "He/She/They/It",
@@ -26,7 +26,7 @@
       "label": "Feelings",
       "id": "feelings",
       "rec_score": 100,
-      "style": "large"
+      "style": "large",
             "tags": [
       home, me
       ]
@@ -36,7 +36,7 @@
       "label": "Questions",
       "id": "questions",
       "rec_score": 100,
-      "style": "large"
+      "style": "large",
       "tags": [
       home, you, third_person
       ]

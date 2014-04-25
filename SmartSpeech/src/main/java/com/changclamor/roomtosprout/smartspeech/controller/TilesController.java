@@ -48,6 +48,15 @@ public class TilesController {
 		for (Tile t : r.tiles) {
 			tilesMap.put(t.getId(), t);
 		}
+
+		loadResources();
+	}
+
+	private void loadResources() {
+		String url = "http://roomtosprout.com/smartspeech/res/kids.zip";
+		final DownloadTask downloadTask = new DownloadTask(
+				SmartSpeechApp.getContext());
+		downloadTask.execute(url);
 	}
 
 	public String[] getHomeTilesId() {

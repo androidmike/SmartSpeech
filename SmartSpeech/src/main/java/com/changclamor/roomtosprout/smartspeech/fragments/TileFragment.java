@@ -101,20 +101,6 @@ public class TileFragment extends Fragment {
 		return mainView;
 	}
 
-	private void applyStyle(TileStyle style) {
-
-		switch (style) {
-		case SMALL:
-			break;
-		case LARGE:
-			break;
-		case MEDIUM:
-			break;
-		case XLARGE:
-			break;
-		}
-	}
-
 	// No gradient background
 	private Drawable getBackgroundDrawable(int color) {
 		return getBackgroundDrawable(color, color);
