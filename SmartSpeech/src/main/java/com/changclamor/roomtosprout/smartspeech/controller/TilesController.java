@@ -48,7 +48,7 @@ public class TilesController {
 			tilesMap.put(t.getId(), t);
 		}
 
-		loadResources();
+		//loadResources();
 	}
 
 	private void loadResources() {

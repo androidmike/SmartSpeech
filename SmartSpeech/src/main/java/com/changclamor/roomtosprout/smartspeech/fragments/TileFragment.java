@@ -2,8 +2,6 @@ package com.changclamor.roomtosprout.smartspeech.fragments;
 
 import java.util.Random;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -18,6 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +51,7 @@ public class TileFragment extends Fragment implements OnInitListener,
 	private View mainView = null;
 	private TextToSpeech tts;
 	private Tile tile = null;
+	private Random random = new Random();
 
 	public TileFragment() {
 		super();
@@ -131,6 +134,7 @@ public class TileFragment extends Fragment implements OnInitListener,
 
 		GradientDrawable normal = new GradientDrawable(Orientation.BOTTOM_TOP,
 				new int[] { bottomColor, topColor });
+		// TODO: lighten up bottom color and top color
 		normal.setShape(GradientDrawable.RECTANGLE);
 		normal.setCornerRadius(10.f);
 		normal.setStroke(10, Color.parseColor("#00000000"));
@@ -145,22 +149,25 @@ public class TileFragment extends Fragment implements OnInitListener,
 
 	@Override
 	public void onInit(int status) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		String spokenWords = tile.getLabel().replace("/", " ");
 		tts.speak(spokenWords, TextToSpeech.QUEUE_FLUSH, null);
-		// tts.speak(tile.getLabel(), TextToSpeech.QUEUE_FLUSH, null);
 	}
 
 	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		Animator animator = AnimatorInflater.loadAnimator(
-				SmartSpeechApp.getContext(), R.animator.card_flip_left_in);
-		animator.setStartDelay(new Random().nextInt(2000));
-		return animator;
+	public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+		// Pop, pop, pop!
+		AnimationSet set = new AnimationSet(true);
+		set.addAnimation(new ScaleAnimation(0, 1, 0, 1,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				.5f));
+		set.setStartOffset(random.nextInt(getResources().getInteger(
+				R.integer.pop_start_delay_max)));
+		set.setInterpolator(new OvershootInterpolator());
+		set.setDuration(getResources().getInteger(R.integer.pop_time));
+		return set;
 	}
 }

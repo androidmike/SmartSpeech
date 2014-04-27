@@ -262,6 +262,8 @@ containing a value of this type.
         public static final int card_flip_time_full=0x7f0b0002;
         public static final int card_flip_time_half=0x7f0b0001;
         public static final int google_play_services_version=0x7f0b0000;
+        public static final int pop_start_delay_max=0x7f0b0004;
+        public static final int pop_time=0x7f0b0003;
     }
     public static final class layout {
         public static final int home_footer=0x7f030000;
