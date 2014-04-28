@@ -1,6 +1,8 @@
 package com.changclamor.roomtosprout.smartspeech.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.res.Resources.NotFoundException;
 
@@ -48,7 +50,7 @@ public class TilesController {
 			tilesMap.put(t.getId(), t);
 		}
 
-		//loadResources();
+		// loadResources();
 	}
 
 	private void loadResources() {
@@ -67,5 +69,13 @@ public class TilesController {
 
 	public Tile getTile(String id) {
 		return tilesMap.get(id);
+	}
+
+	public List<Tile> getTilesByTags(ArrayList<String> tagsList) {
+		List<Tile> tiles = new ArrayList<Tile>();
+
+		// return tiles;
+		List list = new ArrayList(tilesMap.values());
+		return list;
 	}
 }

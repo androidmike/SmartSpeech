@@ -15,6 +15,7 @@ public class Profile {
 	private HashMap<String, Integer> timesTilesShownMap = null;
 
 	private UserInfo info = new UserInfo();
+	private UserPreference prefs = new UserPreference();
 
 	public UserInfo getInfo() {
 		return info;
@@ -60,5 +61,13 @@ public class Profile {
 		}
 		// Increment
 		timesTilesShownMap.put(id, timesTilesShownMap.get(id) + 1);
+	}
+
+	public UserPreference getPrefs() {
+		return prefs;
+	}
+
+	public void setPrefs(UserPreference prefs) {
+		this.prefs = prefs;
 	}
 }

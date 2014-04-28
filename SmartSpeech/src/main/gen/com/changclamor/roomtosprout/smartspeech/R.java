@@ -239,24 +239,26 @@ containing a value of this type.
         public static final int rts=0x7f020024;
     }
     public static final class id {
-        public static final int home_buttons_container_1=0x7f090006;
-        public static final int home_buttons_container_2=0x7f090009;
+        public static final int bottom_container=0x7f090013;
+        public static final int gridview=0x7f09000f;
+        public static final int home_buttons_container_1=0x7f090005;
+        public static final int home_buttons_container_2=0x7f090008;
         public static final int hybrid=0x7f090004;
-        public static final int large_tile_1=0x7f090007;
-        public static final int large_tile_2=0x7f090008;
-        public static final int logo=0x7f09000d;
-        public static final int main_viewgroup=0x7f09000e;
+        public static final int large_tile_1=0x7f090006;
+        public static final int large_tile_2=0x7f090007;
+        public static final int logo=0x7f09000c;
+        public static final int main_container=0x7f09000e;
+        public static final int main_viewgroup=0x7f09000d;
         public static final int none=0x7f090000;
         public static final int normal=0x7f090001;
         public static final int satellite=0x7f090002;
-        public static final int small_tile_1=0x7f09000a;
-        public static final int small_tile_2=0x7f09000b;
-        public static final int small_tile_3=0x7f09000c;
+        public static final int small_tile_1=0x7f090009;
+        public static final int small_tile_2=0x7f09000a;
+        public static final int small_tile_3=0x7f09000b;
         public static final int terrain=0x7f090003;
-        public static final int tile_button=0x7f09000f;
-        public static final int tile_image=0x7f090011;
-        public static final int tile_text=0x7f090010;
-        public static final int viewer=0x7f090005;
+        public static final int tile_button=0x7f090010;
+        public static final int tile_image=0x7f090012;
+        public static final int tile_text=0x7f090011;
     }
     public static final class integer {
         public static final int card_flip_time_full=0x7f0b0002;
@@ -270,8 +272,11 @@ containing a value of this type.
         public static final int home_layout=0x7f030001;
         public static final int launch_rts=0x7f030002;
         public static final int root_layout=0x7f030003;
-        public static final int tile_view_large=0x7f030004;
-        public static final int tile_view_medium=0x7f030005;
+        public static final int sentence_layout=0x7f030004;
+        public static final int tile_grid_layout=0x7f030005;
+        public static final int tile_view_large=0x7f030006;
+        public static final int tile_view_medium=0x7f030007;
+        public static final int workplace_layout=0x7f030008;
     }
     public static final class raw {
         public static final int tiles=0x7f070000;

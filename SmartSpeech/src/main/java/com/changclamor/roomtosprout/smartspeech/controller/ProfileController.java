@@ -17,6 +17,10 @@ public class ProfileController {
 		BusProvider.getInstance().register(this);
 	}
 
+	public Profile getCurrent() {
+		return current;
+	}
+
 	public void login(String userId) {
 		saveCurrentProfile();
 		current = profiles.get(userId);

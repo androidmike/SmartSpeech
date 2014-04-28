@@ -12,8 +12,9 @@ public class Tile {
 	private String id;
 	private String color;
 	private boolean isAudible; // Can be inserted into the text or be said on
-								// its own
+								// its own, as opposed to a category
 	private List<String> tags;
+	private List<String> predictedTags;
 	private boolean isLeaf; // Likely the end of the sentence
 
 	public Tile(String id) {
@@ -53,5 +54,8 @@ public class Tile {
 		return Color.parseColor(color);
 	}
 
+	public List<String> getPredictedTags() {
+		return predictedTags;
+	}
 
 }

@@ -1,6 +1,5 @@
 package com.changclamor.roomtosprout.smartspeech.fragments;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ public class HomeFragment extends TrackingFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.home_layout, container, false);
+		View view = inflater.inflate(R.layout.home_layout, null);
 
 		TileFragment meTile = TileFragment.newInstance(TilesController.ME_ID);
 		TileFragment youTile = TileFragment.newInstance(TilesController.YOU_ID);
@@ -30,17 +29,17 @@ public class HomeFragment extends TrackingFragment {
 				.newInstance(TilesController.FEELINGS_ID);
 		android.support.v4.app.FragmentTransaction ft = getChildFragmentManager()
 				.beginTransaction();
-		ft.add(R.id.large_tile_1, youTile).commit();
+		ft.replace(R.id.large_tile_1, youTile).commit();
 		ft = getChildFragmentManager().beginTransaction().setCustomAnimations(
 				R.animator.card_flip_right_in, R.animator.card_flip_right_out,
 				R.animator.card_flip_left_in, R.animator.card_flip_left_out);
-		ft.add(R.id.large_tile_2, meTile).commit();
+		ft.replace(R.id.large_tile_2, meTile).commit();
 		ft = getChildFragmentManager().beginTransaction();
-		ft.add(R.id.small_tile_1, questionTile).commit();
+		ft.replace(R.id.small_tile_1, questionTile).commit();
 		ft = getChildFragmentManager().beginTransaction();
-		ft.add(R.id.small_tile_2, thirdPersonTile).commit();
+		ft.replace(R.id.small_tile_2, thirdPersonTile).commit();
 		ft = getChildFragmentManager().beginTransaction();
-		ft.add(R.id.small_tile_3, feelingsTile).commit();
+		ft.replace(R.id.small_tile_3, feelingsTile).commit();
 		return view;
 	}
 }

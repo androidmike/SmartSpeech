@@ -40,7 +40,10 @@ import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 public class TileFragment extends Fragment implements OnInitListener,
 		OnClickListener {
 
-	private static final String KIDS = "kids";
+	public interface TileListener {
+		public void onTileClicked(String tileId);
+	}
+
 	private static final boolean ONLY_RECORD_IF_NEWLY_SHOWN = true;
 	private boolean isShown = false;
 
@@ -49,13 +52,12 @@ public class TileFragment extends Fragment implements OnInitListener,
 	private View tileButton;
 	private String tileId = null;
 	private View mainView = null;
-	private TextToSpeech tts;
 	private Tile tile = null;
 	private Random random = new Random();
 
 	public TileFragment() {
 		super();
-		tts = new TextToSpeech(SmartSpeechApp.getContext(), this);
+
 	}
 
 	// Convenience factory method
@@ -110,41 +112,15 @@ public class TileFragment extends Fragment implements OnInitListener,
 
 		tileText.setTextColor(Color.WHITE);
 
-		UIUtil.setBackground(tileButton, getBackgroundDrawable(tile.getColor()));
+		UIUtil.setBackground(tileButton,
+				UIUtil.getBackgroundDrawable(tile.getColor()));
 
-		tileImage.setImageBitmap(StorageUtils.getBitmapFromAsset(KIDS, "full_"
-				+ tileId + ".png"));
+		tileImage.setImageBitmap(StorageUtils.getBitmapFromAsset(
+				Constants.KIDS, "full_" + tileId + ".png"));
 
 		tileText.setText(tile.getLabel());
 
 		return mainView;
-	}
-
-	// No gradient background
-	private Drawable getBackgroundDrawable(int color) {
-		return getBackgroundDrawable(color, color);
-	}
-
-	private Drawable getBackgroundDrawable(int bottomColor, int topColor) {
-		GradientDrawable pressed = new GradientDrawable(Orientation.BOTTOM_TOP,
-				new int[] { bottomColor, topColor });
-		pressed.setShape(GradientDrawable.RECTANGLE);
-		pressed.setCornerRadius(10.f);
-		pressed.setStroke(0, Color.parseColor("#00000000"));
-
-		GradientDrawable normal = new GradientDrawable(Orientation.BOTTOM_TOP,
-				new int[] { bottomColor, topColor });
-		// TODO: lighten up bottom color and top color
-		normal.setShape(GradientDrawable.RECTANGLE);
-		normal.setCornerRadius(10.f);
-		normal.setStroke(10, Color.parseColor("#00000000"));
-
-		StateListDrawable states = new StateListDrawable();
-		states.addState(new int[] { android.R.attr.state_pressed }, pressed);
-		states.addState(new int[] { android.R.attr.state_focused }, pressed);
-		states.addState(new int[] {}, normal);
-		return states;
-
 	}
 
 	@Override
@@ -153,8 +129,10 @@ public class TileFragment extends Fragment implements OnInitListener,
 
 	@Override
 	public void onClick(View v) {
-		String spokenWords = tile.getLabel().replace("/", " ");
-		tts.speak(spokenWords, TextToSpeech.QUEUE_FLUSH, null);
+		if (getActivity() == null) {
+			return;
+		}
+		((TileListener) getActivity()).onTileClicked(tileId);
 	}
 
 	@Override
