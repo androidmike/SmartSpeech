@@ -1,11 +1,13 @@
 package com.changclamor.roomtosprout.smartspeech.ui;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.changclamor.roomtosprout.smartspeech.BusProvider;
@@ -13,8 +15,9 @@ import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
 import com.changclamor.roomtosprout.smartspeech.fragments.WordDeleteEvent;
+import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 
-public class WordView extends FrameLayout {
+public class WordView extends LinearLayout {
 
 	private String id;
 	private TextView textView;
@@ -30,15 +33,15 @@ public class WordView extends FrameLayout {
 		init();
 	}
 
-	public WordView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		init();
-	}
-
 	public void init() {
+		setOrientation(LinearLayout.HORIZONTAL);
 		LayoutInflater.from(SmartSpeechApp.getContext()).inflate(
 				R.layout.word_view, this, true);
+
 		textView = (TextView) findViewById(R.id.text);
+
+		UIUtil.setBackground(textView,
+				UIUtil.getBackgroundDrawable(Color.parseColor("#CCCCCC")));
 		delButton = (Button) findViewById(R.id.del_button);
 		delButton.setOnClickListener(new OnClickListener() {
 

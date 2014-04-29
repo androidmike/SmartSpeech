@@ -239,9 +239,10 @@ containing a value of this type.
         public static final int rts=0x7f020024;
     }
     public static final class id {
-        public static final int bottom_container=0x7f090015;
-        public static final int del_button=0x7f090014;
-        public static final int gridview=0x7f090010;
+        public static final int bottom_container=0x7f090017;
+        public static final int clear_button=0x7f09000f;
+        public static final int del_button=0x7f090016;
+        public static final int gridview=0x7f090011;
         public static final int home_buttons_container_1=0x7f090005;
         public static final int home_buttons_container_2=0x7f090008;
         public static final int hybrid=0x7f090004;
@@ -256,11 +257,12 @@ containing a value of this type.
         public static final int small_tile_1=0x7f090009;
         public static final int small_tile_2=0x7f09000a;
         public static final int small_tile_3=0x7f09000b;
+        public static final int speak_button=0x7f090010;
         public static final int terrain=0x7f090003;
-        public static final int text=0x7f09000f;
-        public static final int tile_button=0x7f090011;
-        public static final int tile_image=0x7f090013;
-        public static final int tile_text=0x7f090012;
+        public static final int text=0x7f090015;
+        public static final int tile_button=0x7f090012;
+        public static final int tile_image=0x7f090014;
+        public static final int tile_text=0x7f090013;
     }
     public static final class integer {
         public static final int card_flip_time_full=0x7f0b0002;
