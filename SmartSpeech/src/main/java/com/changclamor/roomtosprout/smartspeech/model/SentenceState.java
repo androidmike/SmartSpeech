@@ -3,7 +3,12 @@ package com.changclamor.roomtosprout.smartspeech.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.changclamor.roomtosprout.smartspeech.BusProvider;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
+import com.changclamor.roomtosprout.smartspeech.fragments.GridScrollEvent;
+import com.changclamor.roomtosprout.smartspeech.fragments.SentenceChangedEvent;
+import com.changclamor.roomtosprout.smartspeech.fragments.TileClickedEvent;
+import com.squareup.otto.Subscribe;
 
 public class SentenceState {
 	private static SentenceState state = new SentenceState();
@@ -37,7 +42,8 @@ public class SentenceState {
 	 * @param pos
 	 */
 	public void remove(int pos) {
-
+		tileIdsInOrder.remove(pos);
+		BusProvider.getInstance().post(new SentenceChangedEvent());
 	}
 
 	/**
@@ -47,7 +53,8 @@ public class SentenceState {
 	 * @param id
 	 */
 	public void add(String id) {
-
+		tileIdsInOrder.add(id);
+		BusProvider.getInstance().post(new SentenceChangedEvent());
 	}
 
 	/**
@@ -64,6 +71,11 @@ public class SentenceState {
 
 	public void clear() {
 		tileIdsInOrder.clear();
+	}
 
+	public void remove(String id) {
+		tileIdsInOrder.remove(id);
+
+		BusProvider.getInstance().post(new SentenceChangedEvent());
 	}
 }

@@ -11,11 +11,14 @@ import android.support.v4.app.FragmentActivity;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
 import com.changclamor.roomtosprout.smartspeech.fragments.BrandingFragment;
 import com.changclamor.roomtosprout.smartspeech.fragments.HomeFragment;
+import com.changclamor.roomtosprout.smartspeech.fragments.TileClickedEvent;
+import com.changclamor.roomtosprout.smartspeech.fragments.WordDeleteEvent;
 import com.changclamor.roomtosprout.smartspeech.fragments.TileFragment.TileListener;
 import com.changclamor.roomtosprout.smartspeech.fragments.TileWorkplaceFragment;
 import com.changclamor.roomtosprout.smartspeech.model.SentenceState;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.crashlytics.android.Crashlytics;
+import com.squareup.otto.Subscribe;
 
 public class MainActivity extends FragmentActivity implements
 		BrandingFragment.BrandingFragmentListener, TileListener, OnInitListener {
@@ -31,6 +34,18 @@ public class MainActivity extends FragmentActivity implements
 		setContentView(R.layout.root_layout);
 		showBrandingSequenceFragment();
 
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		BusProvider.getInstance().register(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		BusProvider.getInstance().unregister(this);
 	}
 
 	private void showBrandingSequenceFragment() {
@@ -94,4 +109,13 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 
+	@Subscribe
+	public void onWordDelete(WordDeleteEvent event) {
+		SentenceState.getSentence().remove(event.id);
+	}
+
+	@Subscribe
+	public void onTileClicked(TileClickedEvent event) {
+		SentenceState.getSentence().add(event.id);
+	}
 }

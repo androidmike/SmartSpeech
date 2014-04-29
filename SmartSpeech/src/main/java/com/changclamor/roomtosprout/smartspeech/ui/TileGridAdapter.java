@@ -8,17 +8,20 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.changclamor.roomtosprout.smartspeech.BusProvider;
 import com.changclamor.roomtosprout.smartspeech.Constants;
 import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
 import com.changclamor.roomtosprout.smartspeech.data.StorageUtils;
+import com.changclamor.roomtosprout.smartspeech.fragments.TileClickedEvent;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 
@@ -44,7 +47,7 @@ public class TileGridAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Tile tile = TilesController.getInstance().getTile(
+		final Tile tile = TilesController.getInstance().getTile(
 				tileList.get(position).getId());
 		LayoutInflater inflater = LayoutInflater.from(SmartSpeechApp
 				.getContext());
@@ -53,7 +56,13 @@ public class TileGridAdapter extends BaseAdapter {
 				.findViewById(R.id.tile_image);
 		TextView tileText = (TextView) mainView.findViewById(R.id.tile_text);
 		View tileButton = (View) mainView.findViewById(R.id.tile_button);
-		// tileButton.setOnClickListener(null);
+		tileButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				BusProvider.getInstance().post(
+						new TileClickedEvent(tile.getId()));
+			}
+		});
 		Typeface face = Typeface.createFromAsset(SmartSpeechApp.getContext()
 				.getAssets(), mContext.getResources().getString(R.string.thin));
 		tileText.setTypeface(face);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.changclamor.roomtosprout.smartspeech.BusProvider;
@@ -21,7 +18,6 @@ import com.changclamor.roomtosprout.smartspeech.Constants;
 import com.changclamor.roomtosprout.smartspeech.R;
 import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
-import com.changclamor.roomtosprout.smartspeech.fragments.TileFragment.TileListener;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.ui.TileGridAdapter;
 
@@ -30,7 +26,7 @@ import com.changclamor.roomtosprout.smartspeech.ui.TileGridAdapter;
  */
 
 public class TileGridFragment extends TrackingFragment implements
-		OnItemClickListener, OnScrollListener {
+		OnScrollListener {
 	private GridView gridView = null;
 
 	public static TileGridFragment newInstance(List<String> tags) {
@@ -52,41 +48,39 @@ public class TileGridFragment extends TrackingFragment implements
 				Constants.EXTRA_TAGS);
 		List<Tile> tilesList = TilesController.getInstance().getTilesByTags(
 				tagsList);
-		gridView.setAdapter(new TileGridAdapter(SmartSpeechApp.getContext(),
-				tilesList));
+		gridView.setAdapter(new TileGridAdapter(getActivity(), tilesList));
 
-		gridView.setOnItemClickListener(this);
 		gridView.setOnScrollListener(this);
 
 		return view;
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		if (getActivity() == null) {
-			return;
-		}
-		Tile tileClicked = (Tile) gridView.getAdapter().getItem(position);
-		((TileListener) getActivity()).onTileClicked(tileClicked.getId());
-	}
-
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
+	public void onScrollStateChanged(final AbsListView view, int scrollState) {
 
 		view.setOnTouchListener(new OnTouchListener() {
-			private float mInitialX;
 			private float mInitialY;
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					mInitialX = event.getX();
 					mInitialY = event.getY();
 					return true;
 				case MotionEvent.ACTION_MOVE:
-					final float x = event.getX();
+					if (view.getLastVisiblePosition() == view.getAdapter()
+							.getCount() - 1
+							&& view.getChildAt(view.getChildCount() - 1)
+									.getBottom() <= view.getHeight()) {
+						// It is scrolled all the way down here
+						return false;
+					}
+					if (view.getFirstVisiblePosition() == 0
+							&& view.getChildAt(0).getTop() >= 0) {
+						// It is scrolled all the way up here
+						return false;
+					}
 					final float y = event.getY();
 					final float yDiff = y - mInitialY;
 					if (yDiff > 0.0) {
