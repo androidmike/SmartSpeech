@@ -71,6 +71,8 @@ public class SentenceState {
 
 	public void clear() {
 		tileIdsInOrder.clear();
+
+		BusProvider.getInstance().post(new SentenceChangedEvent());
 	}
 
 	public void remove(String id) {

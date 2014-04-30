@@ -102,6 +102,34 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int cameraZoom=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int horizontalSpacing=0x7f010013;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_breakLine=0x7f010015;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_horizontalSpacing=0x7f010016;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -172,6 +200,16 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int useViewLifecycle=0x7f01000f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int verticalSpacing=0x7f010014;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -203,66 +241,71 @@ containing a value of this type.
         public static final int button_tile=0x7f020000;
         public static final int button_tile_normal=0x7f020001;
         public static final int button_tile_selected=0x7f020002;
-        public static final int common_signin_btn_icon_dark=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020004;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020005;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020006;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020007;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020008;
-        public static final int common_signin_btn_icon_focus_light=0x7f020009;
-        public static final int common_signin_btn_icon_light=0x7f02000a;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02000b;
-        public static final int common_signin_btn_icon_normal_light=0x7f02000c;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000d;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000e;
-        public static final int common_signin_btn_text_dark=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_dark=0x7f020010;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020011;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020012;
-        public static final int common_signin_btn_text_disabled_light=0x7f020013;
-        public static final int common_signin_btn_text_focus_dark=0x7f020014;
-        public static final int common_signin_btn_text_focus_light=0x7f020015;
-        public static final int common_signin_btn_text_light=0x7f020016;
-        public static final int common_signin_btn_text_normal_dark=0x7f020017;
-        public static final int common_signin_btn_text_normal_light=0x7f020018;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020019;
-        public static final int common_signin_btn_text_pressed_light=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
-        public static final int ic_plusone_medium_off_client=0x7f02001c;
-        public static final int ic_plusone_small_off_client=0x7f02001d;
-        public static final int ic_plusone_standard_off_client=0x7f02001e;
-        public static final int ic_plusone_tall_off_client=0x7f02001f;
-        public static final int icon_me=0x7f020020;
-        public static final int icon_you=0x7f020021;
-        public static final int logo_ss=0x7f020022;
-        public static final int logo_ss_home=0x7f020023;
-        public static final int rts=0x7f020024;
+        public static final int circle_alpha=0x7f020003;
+        public static final int common_signin_btn_icon_dark=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020005;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020006;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020007;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020008;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020009;
+        public static final int common_signin_btn_icon_focus_light=0x7f02000a;
+        public static final int common_signin_btn_icon_light=0x7f02000b;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02000c;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000d;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000e;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000f;
+        public static final int common_signin_btn_text_dark=0x7f020010;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020011;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020012;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020013;
+        public static final int common_signin_btn_text_disabled_light=0x7f020014;
+        public static final int common_signin_btn_text_focus_dark=0x7f020015;
+        public static final int common_signin_btn_text_focus_light=0x7f020016;
+        public static final int common_signin_btn_text_light=0x7f020017;
+        public static final int common_signin_btn_text_normal_dark=0x7f020018;
+        public static final int common_signin_btn_text_normal_light=0x7f020019;
+        public static final int common_signin_btn_text_pressed_dark=0x7f02001a;
+        public static final int common_signin_btn_text_pressed_light=0x7f02001b;
+        public static final int ic_launcher=0x7f02001c;
+        public static final int ic_plusone_medium_off_client=0x7f02001d;
+        public static final int ic_plusone_small_off_client=0x7f02001e;
+        public static final int ic_plusone_standard_off_client=0x7f02001f;
+        public static final int ic_plusone_tall_off_client=0x7f020020;
+        public static final int icon_me=0x7f020021;
+        public static final int icon_you=0x7f020022;
+        public static final int logo_ss=0x7f020023;
+        public static final int logo_ss_home=0x7f020024;
+        public static final int rts=0x7f020025;
     }
     public static final class id {
-        public static final int bottom_container=0x7f090017;
-        public static final int clear_button=0x7f09000f;
-        public static final int del_button=0x7f090016;
-        public static final int gridview=0x7f090011;
-        public static final int home_buttons_container_1=0x7f090005;
-        public static final int home_buttons_container_2=0x7f090008;
+        public static final int bottom_container=0x7f09001a;
+        public static final int del_button=0x7f090018;
+        public static final int gridview=0x7f090014;
+        public static final int home_buttons_container_1=0x7f090006;
+        public static final int home_buttons_container_2=0x7f090009;
         public static final int hybrid=0x7f090004;
-        public static final int large_tile_1=0x7f090006;
-        public static final int large_tile_2=0x7f090007;
-        public static final int logo=0x7f09000c;
-        public static final int main_container=0x7f09000e;
-        public static final int main_viewgroup=0x7f09000d;
+        public static final int large_tile_1=0x7f090007;
+        public static final int large_tile_2=0x7f090008;
+        public static final int logo=0x7f09000d;
+        public static final int main_container=0x7f090019;
+        public static final int main_viewgroup=0x7f09000e;
         public static final int none=0x7f090000;
         public static final int normal=0x7f090001;
         public static final int satellite=0x7f090002;
-        public static final int small_tile_1=0x7f090009;
-        public static final int small_tile_2=0x7f09000a;
-        public static final int small_tile_3=0x7f09000b;
-        public static final int speak_button=0x7f090010;
+        public static final int sentence_clear_button=0x7f090010;
+        public static final int sentence_main_container=0x7f09000f;
+        public static final int sentence_speak_button=0x7f090011;
+        public static final int sentence_speak_button_angry=0x7f090013;
+        public static final int sentence_speak_button_sad=0x7f090012;
+        public static final int small_tile_1=0x7f09000a;
+        public static final int small_tile_2=0x7f09000b;
+        public static final int small_tile_3=0x7f09000c;
         public static final int terrain=0x7f090003;
-        public static final int text=0x7f090015;
-        public static final int tile_button=0x7f090012;
-        public static final int tile_image=0x7f090014;
-        public static final int tile_text=0x7f090013;
+        public static final int text=0x7f090005;
+        public static final int tile_button=0x7f090015;
+        public static final int tile_image=0x7f090017;
+        public static final int tile_text=0x7f090016;
+        public static final int workplace_home_button=0x7f09001b;
     }
     public static final class integer {
         public static final int card_flip_time_full=0x7f0b0002;
@@ -272,16 +315,17 @@ containing a value of this type.
         public static final int pop_time=0x7f0b0003;
     }
     public static final class layout {
-        public static final int home_footer=0x7f030000;
-        public static final int home_layout=0x7f030001;
-        public static final int launch_rts=0x7f030002;
-        public static final int root_layout=0x7f030003;
-        public static final int sentence_layout=0x7f030004;
-        public static final int tile_grid_layout=0x7f030005;
-        public static final int tile_view_large=0x7f030006;
-        public static final int tile_view_medium=0x7f030007;
-        public static final int word_view=0x7f030008;
-        public static final int workplace_layout=0x7f030009;
+        public static final int breadcrumb_view=0x7f030000;
+        public static final int home_footer=0x7f030001;
+        public static final int home_layout=0x7f030002;
+        public static final int launch_rts=0x7f030003;
+        public static final int root_layout=0x7f030004;
+        public static final int sentence_layout=0x7f030005;
+        public static final int tile_grid_layout=0x7f030006;
+        public static final int tile_view_large=0x7f030007;
+        public static final int tile_view_medium=0x7f030008;
+        public static final int word_view=0x7f030009;
+        public static final int workplace_layout=0x7f03000a;
     }
     public static final class raw {
         public static final int tiles=0x7f070000;
@@ -506,10 +550,12 @@ containing a value of this type.
           @attr name android:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
-        /**  Declare custom theme attributes that allow changing which styles are
+        /** 
+         Declare custom theme attributes that allow changing which styles are
          used for button bars depending on the API level.
          ?android:attr/buttonBarStyle is new as of API 11 so this is
-         necessary to support previous API levels. 
+         necessary to support previous API levels.
+    
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />
@@ -544,6 +590,98 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name android:buttonBarStyle
         */
         public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+        /** Attributes that can be used with a FlowLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FlowLayout_horizontalSpacing com.changclamor.roomtosprout.smartspeech:horizontalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_verticalSpacing com.changclamor.roomtosprout.smartspeech:verticalSpacing}</code></td><td></td></tr>
+           </table>
+           @see #FlowLayout_horizontalSpacing
+           @see #FlowLayout_verticalSpacing
+         */
+        public static final int[] FlowLayout = {
+            0x7f010013, 0x7f010014
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.changclamor.roomtosprout.smartspeech.R.attr#horizontalSpacing}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:horizontalSpacing
+        */
+        public static final int FlowLayout_horizontalSpacing = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.changclamor.roomtosprout.smartspeech.R.attr#verticalSpacing}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:verticalSpacing
+        */
+        public static final int FlowLayout_verticalSpacing = 1;
+        /** Attributes that can be used with a FlowLayout_LayoutParams.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_breakLine com.changclamor.roomtosprout.smartspeech:layout_breakLine}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_horizontalSpacing com.changclamor.roomtosprout.smartspeech:layout_horizontalSpacing}</code></td><td></td></tr>
+           </table>
+           @see #FlowLayout_LayoutParams_layout_breakLine
+           @see #FlowLayout_LayoutParams_layout_horizontalSpacing
+         */
+        public static final int[] FlowLayout_LayoutParams = {
+            0x7f010015, 0x7f010016
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.changclamor.roomtosprout.smartspeech.R.attr#layout_breakLine}
+          attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_breakLine
+        */
+        public static final int FlowLayout_LayoutParams_layout_breakLine = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.changclamor.roomtosprout.smartspeech.R.attr#layout_horizontalSpacing}
+          attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_horizontalSpacing
+        */
+        public static final int FlowLayout_LayoutParams_layout_horizontalSpacing = 1;
         /** Attributes that can be used with a MapAttrs.
            <p>Includes the following attributes:</p>
            <table>
