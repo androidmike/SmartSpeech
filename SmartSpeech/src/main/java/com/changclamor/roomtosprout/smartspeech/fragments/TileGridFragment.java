@@ -46,8 +46,8 @@ public class TileGridFragment extends TrackingFragment implements
 		gridView = (GridView) view.findViewById(R.id.gridview);
 		ArrayList<String> tagsList = getArguments().getStringArrayList(
 				Constants.EXTRA_TAGS);
-		List<Tile> tilesList = TilesController.getInstance().getTilesByTags(
-				tagsList);
+		List<String> tilesList = TilesController.getInstance()
+				.getTilesIdsByTags(tagsList);
 		gridView.setAdapter(new TileGridAdapter(getActivity(), tilesList));
 
 		gridView.setOnScrollListener(this);

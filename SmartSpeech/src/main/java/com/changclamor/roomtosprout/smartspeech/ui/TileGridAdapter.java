@@ -27,9 +27,9 @@ import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 
 public class TileGridAdapter extends BaseAdapter {
 	private Context mContext;
-	private List<Tile> tileList = new ArrayList<Tile>();
+	private List<String> tileList = new ArrayList<String>();
 
-	public TileGridAdapter(Context c, List<Tile> tileList) {
+	public TileGridAdapter(Context c, List<String> tileList) {
 		mContext = c;
 		this.tileList = tileList;
 	}
@@ -48,7 +48,7 @@ public class TileGridAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final Tile tile = TilesController.getInstance().getTile(
-				tileList.get(position).getId());
+				tileList.get(position));
 		LayoutInflater inflater = LayoutInflater.from(SmartSpeechApp
 				.getContext());
 		View mainView = inflater.inflate(R.layout.tile_view_medium, null);

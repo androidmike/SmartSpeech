@@ -58,4 +58,8 @@ public class Tile {
 		return predictedTags;
 	}
 
+	public List<String> getTags() {
+		return tags;
+	}
+
 }

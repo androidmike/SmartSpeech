@@ -329,6 +329,7 @@ containing a value of this type.
     }
     public static final class raw {
         public static final int tiles=0x7f070000;
+        public static final int tiles_complete=0x7f070001;
     }
     public static final class string {
         public static final int app_name=0x7f0a001d;

@@ -112,6 +112,7 @@ public class MainActivity extends FragmentActivity implements
 
 	@Subscribe
 	public void onTileClicked(TileClickedEvent event) {
+		showWorkplace(TilesController.getInstance().getTile(event.id).getPredictedTags());
 		SentenceState.getSentence().add(event.id);
 	}
 }

@@ -1,0 +1,80 @@
+{
+  "tiles": [
+    {
+      "color": "#739bd1",
+      "label": "Me",
+      "id": "me",
+      "rec_score": 100,
+      "style": "large",
+      "is_leaf": false,
+      "is_audible": true,
+      "type": "pronoun",
+      "variations": [
+        {
+          "type": "singular_subject",
+          "label": "I"
+        },
+        "me",
+        "myself",
+        "we",
+        "us",
+        "ourselves"
+      ],
+      "tags": [
+        "audible",
+        "home",
+        "subject",
+        "me"
+      ],
+      "followed_by_tags": [
+        "verb"
+      ]
+    },
+    {
+      "color": "#75c15a",
+      "label": "You",
+      "id": "you",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "home",
+        "me"
+      ]
+    },
+    {
+      "color": "#ea9723",
+      "label": "He/She/They/It",
+      "id": "third_person",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "home",
+        "me",
+        "leaf"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "Feelings",
+      "id": "feelings",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "home",
+        "me"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "Questions",
+      "id": "questions",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "home",
+        "you",
+        "third_person"
+      ]
+    }
+  ]
+}

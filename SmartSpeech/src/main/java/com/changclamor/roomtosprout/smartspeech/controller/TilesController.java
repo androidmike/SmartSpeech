@@ -2,7 +2,9 @@ package com.changclamor.roomtosprout.smartspeech.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.content.res.Resources.NotFoundException;
 
@@ -11,6 +13,7 @@ import com.changclamor.roomtosprout.smartspeech.SmartSpeechApp;
 import com.changclamor.roomtosprout.smartspeech.model.Tile;
 import com.changclamor.roomtosprout.smartspeech.transport.GetTilesResponse;
 import com.changclamor.roomtosprout.smartspeech.util.TransportUtil;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,6 +29,7 @@ public class TilesController {
 	private String[] homeTilesId = { ME_ID, YOU_ID, THIRD_PERSON_ID,
 			FEELINGS_ID };
 	private HashMap<String, Tile> tilesMap = null;
+	private HashMap<String, Set<String>> tagMap = new HashMap<String, Set<String>>();
 
 	public static void init() {
 		instance = new TilesController();
@@ -33,7 +37,8 @@ public class TilesController {
 	}
 
 	private void loadTilesMap() {
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setFieldNamingPolicy(
+				FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 		String json = null;
 		try {
 			json = TransportUtil.convertStreamToString(SmartSpeechApp
@@ -48,6 +53,17 @@ public class TilesController {
 		tilesMap = new HashMap<String, Tile>();
 		for (Tile t : r.tiles) {
 			tilesMap.put(t.getId(), t);
+
+			for (String tag : t.getTags()) {
+				Set<String> existingList = tagMap.get(tag);
+				if (existingList == null) {
+					Set<String> list = new HashSet<String>();
+					list.add(t.getId());
+					tagMap.put(tag, list);
+				} else {
+					existingList.add(t.getId());
+				}
+			}
 		}
 
 		// loadResources();
@@ -71,11 +87,18 @@ public class TilesController {
 		return tilesMap.get(id);
 	}
 
-	public List<Tile> getTilesByTags(ArrayList<String> tagsList) {
-		List<Tile> tiles = new ArrayList<Tile>();
-
-		// return tiles;
-		List list = new ArrayList(tilesMap.values());
+	public List<String> getTilesIdsByTags(ArrayList<String> tagsList) {
+		List<String> list = new ArrayList<String>();
+		if (tagsList == null) {
+			return list;
+		}
+		for (String tag : tagsList) {
+			Set<String> set = tagMap.get(tag);
+			if (set == null) {
+				continue;
+			}
+			list.addAll(set);
+		}
 		return list;
 	}
 }

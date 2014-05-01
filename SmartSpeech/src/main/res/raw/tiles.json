@@ -9,12 +9,11 @@
       "is_leaf": false,
       "is_audible": true,
       "tags": [
-        "audible",
         "home",
         "subject",
         "me"
       ],
-      "followed_by_tags": [
+      "predicted_tags": [
         "verb"
       ]
     },
@@ -27,6 +26,9 @@
       "tags": [
         "home",
         "me"
+      ],
+      "predicted_tags": [
+        "verb"
       ]
     },
     {
@@ -39,6 +41,9 @@
         "home",
         "me",
         "leaf"
+      ],
+      "predicted_tags": [
+        "verb"
       ]
     },
     {
@@ -50,6 +55,9 @@
       "tags": [
         "home",
         "me"
+      ],
+      "predicted_tags": [
+        "verb"
       ]
     },
     {
@@ -62,7 +70,75 @@
         "home",
         "you",
         "third_person"
+      ],
+      "predicted_tags": [
+        "verb"
       ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "want to",
+      "id": "want_to",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "verb"
+      ],
+      "predicted_tags": [
+        "verb",
+        "action"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "go to bed",
+      "id": "go_to_bed",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "action"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "eat",
+      "id": "eat",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "verb",
+        "action"
+      ],
+      "predicted_tags": [
+        "object",
+        "food"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "read",
+      "id": "read",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "verb",
+        "action"
+      ],
+      "predicted_tags": [
+        "object",
+        "book"
+      ]
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "marshmallow",
+      "id": "marshmallow",
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+        "food"
+      ],
+      "predicted_tags": []
     }
   ]
 }
