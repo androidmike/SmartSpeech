@@ -321,11 +321,12 @@ containing a value of this type.
         public static final int launch_rts=0x7f030003;
         public static final int root_layout=0x7f030004;
         public static final int sentence_layout=0x7f030005;
-        public static final int tile_grid_layout=0x7f030006;
-        public static final int tile_view_large=0x7f030007;
-        public static final int tile_view_medium=0x7f030008;
-        public static final int word_view=0x7f030009;
-        public static final int workplace_layout=0x7f03000a;
+        public static final int speak_layout=0x7f030006;
+        public static final int tile_grid_layout=0x7f030007;
+        public static final int tile_view_large=0x7f030008;
+        public static final int tile_view_medium=0x7f030009;
+        public static final int word_view=0x7f03000a;
+        public static final int workplace_layout=0x7f03000b;
     }
     public static final class raw {
         public static final int tiles=0x7f070000;
@@ -512,7 +513,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSize
+          @attr name com.changclamor.roomtosprout.smartspeech:adSize
         */
         public static final int AdsAttrs_adSize = 0;
         /**
@@ -532,7 +533,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSizes
+          @attr name com.changclamor.roomtosprout.smartspeech:adSizes
         */
         public static final int AdsAttrs_adSizes = 1;
         /**
@@ -548,7 +549,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adUnitId
+          @attr name com.changclamor.roomtosprout.smartspeech:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
         /** 
@@ -578,7 +579,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:buttonBarButtonStyle
+          @attr name com.changclamor.roomtosprout.smartspeech:buttonBarButtonStyle
         */
         public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
         /**
@@ -588,7 +589,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:buttonBarStyle
+          @attr name com.changclamor.roomtosprout.smartspeech:buttonBarStyle
         */
         public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
         /** Attributes that can be used with a FlowLayout.
@@ -619,7 +620,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:horizontalSpacing
+          @attr name com.changclamor.roomtosprout.smartspeech:horizontalSpacing
         */
         public static final int FlowLayout_horizontalSpacing = 0;
         /**
@@ -635,7 +636,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:verticalSpacing
+          @attr name com.changclamor.roomtosprout.smartspeech:verticalSpacing
         */
         public static final int FlowLayout_verticalSpacing = 1;
         /** Attributes that can be used with a FlowLayout_LayoutParams.
@@ -664,7 +665,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:layout_breakLine
+          @attr name com.changclamor.roomtosprout.smartspeech:layout_breakLine
         */
         public static final int FlowLayout_LayoutParams_layout_breakLine = 0;
         /**
@@ -680,7 +681,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:layout_horizontalSpacing
+          @attr name com.changclamor.roomtosprout.smartspeech:layout_horizontalSpacing
         */
         public static final int FlowLayout_LayoutParams_layout_horizontalSpacing = 1;
         /** Attributes that can be used with a MapAttrs.
@@ -736,7 +737,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name com.changclamor.roomtosprout.smartspeech:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -750,7 +751,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name com.changclamor.roomtosprout.smartspeech:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -764,7 +765,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name com.changclamor.roomtosprout.smartspeech:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -778,7 +779,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name com.changclamor.roomtosprout.smartspeech:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -792,7 +793,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name com.changclamor.roomtosprout.smartspeech:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -812,7 +813,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name com.changclamor.roomtosprout.smartspeech:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -826,7 +827,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name com.changclamor.roomtosprout.smartspeech:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -840,7 +841,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name com.changclamor.roomtosprout.smartspeech:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -854,7 +855,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name com.changclamor.roomtosprout.smartspeech:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -868,7 +869,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name com.changclamor.roomtosprout.smartspeech:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -882,7 +883,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name com.changclamor.roomtosprout.smartspeech:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -896,7 +897,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name com.changclamor.roomtosprout.smartspeech:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -910,7 +911,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name com.changclamor.roomtosprout.smartspeech:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -924,7 +925,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name com.changclamor.roomtosprout.smartspeech:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
     };

@@ -40,10 +40,6 @@ import com.changclamor.roomtosprout.smartspeech.util.UIUtil;
 public class TileFragment extends Fragment implements OnInitListener,
 		OnClickListener {
 
-	public interface TileListener {
-		public void onTileClicked(String tileId);
-	}
-
 	private static final boolean ONLY_RECORD_IF_NEWLY_SHOWN = true;
 	private boolean isShown = false;
 
@@ -132,7 +128,9 @@ public class TileFragment extends Fragment implements OnInitListener,
 		if (getActivity() == null) {
 			return;
 		}
-		((TileListener) getActivity()).onTileClicked(tileId);
+
+        BusProvider.getInstance().post(
+                new TileClickedEvent(tile.getId()));
 	}
 
 	@Override

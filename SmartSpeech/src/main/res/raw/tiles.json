@@ -8,10 +8,33 @@
       "style": "large",
       "is_leaf": false,
       "is_audible": true,
+      "forms": {
+        "subject": "i"
+      },
       "tags": [
         "home",
-        "subject",
-        "me"
+        "pronoun",
+        "me",
+        "object"
+      ],
+      "predicted_tags": [
+        "verb"
+      ]
+    },
+    {
+      "color": "#739bd1",
+      "label": "I",
+      "id": "i",
+      "rec_score": 100,
+      "style": "large",
+      "is_leaf": false,
+      "is_audible": true,
+      "forms": {
+        "object": "me"
+      },
+      "tags": [
+        "pronoun",
+        "subject"
       ],
       "predicted_tags": [
         "verb"
@@ -89,6 +112,7 @@
         "action"
       ]
     },
+    
     {
       "color": "#a6c9f9",
       "label": "go to bed",
@@ -96,7 +120,10 @@
       "rec_score": 100,
       "style": "large",
       "tags": [
+        "verb",
         "action"
+      ],
+      "predicted_tags": [
       ]
     },
     {
@@ -110,7 +137,6 @@
         "action"
       ],
       "predicted_tags": [
-        "object",
         "food"
       ]
     },
@@ -125,7 +151,6 @@
         "action"
       ],
       "predicted_tags": [
-        "object",
         "book"
       ]
     },
@@ -133,10 +158,33 @@
       "color": "#a6c9f9",
       "label": "marshmallow",
       "id": "marshmallow",
+      "is_leaf": true,
       "rec_score": 100,
       "style": "large",
       "tags": [
         "food"
+      ],
+      "predicted_tags": []
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "?",
+      "id": "question",
+      "is_leaf": true,
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
+      ],
+      "predicted_tags": []
+    },
+    {
+      "color": "#a6c9f9",
+      "label": "Speak now!",
+      "id": "speak",
+      "is_leaf": true,
+      "rec_score": 100,
+      "style": "large",
+      "tags": [
       ],
       "predicted_tags": []
     }

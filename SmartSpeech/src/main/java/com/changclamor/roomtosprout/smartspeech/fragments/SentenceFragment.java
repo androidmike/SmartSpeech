@@ -18,75 +18,77 @@ import com.changclamor.roomtosprout.smartspeech.util.SpeakEngine.Emotion;
 import com.squareup.otto.Subscribe;
 
 public class SentenceFragment extends Fragment {
-	public static final String tag = SentenceFragment.class.getCanonicalName();
-	private FlowLayout mainContainer = null;
-	private View speakButton = null;
-	private View resetButton = null;
+    public static final String tag = SentenceFragment.class.getCanonicalName();
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.sentence_layout, null);
-		mainContainer = (FlowLayout) view
-				.findViewById(R.id.sentence_main_container);
-		speakButton = view.findViewById(R.id.sentence_speak_button);
-		resetButton = view.findViewById(R.id.sentence_clear_button);
-		view.findViewById(R.id.sentence_speak_button_sad).setOnClickListener(
-				new OnClickListener() {
+    private FlowLayout mainContainer = null;
 
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
+    private View speakButton = null;
 
-						SpeakEngine.speak(SentenceState.getSentence()
-								.toString(), Emotion.SAD);
-					}
-				});
-		view.findViewById(R.id.sentence_speak_button_angry).setOnClickListener(
-				new OnClickListener() {
+    private View resetButton = null;
 
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.sentence_layout, null);
+        mainContainer = (FlowLayout) view.findViewById(R.id.sentence_main_container);
+        speakButton = view.findViewById(R.id.sentence_speak_button);
+        resetButton = view.findViewById(R.id.sentence_clear_button);
+        view.findViewById(R.id.sentence_speak_button_sad).setOnClickListener(new OnClickListener() {
 
-						SpeakEngine.speak(SentenceState.getSentence()
-								.toString(), Emotion.ANGRY);
-					}
-				});
-		speakButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
 
-			@Override
-			public void onClick(View v) {
-				SpeakEngine.speak(SentenceState.getSentence().toString());
-			}
-		});
-		resetButton.setOnClickListener(new OnClickListener() {
+                SpeakEngine.speak(SentenceState.getSentence().toString(), Emotion.SAD);
+            }
+        });
+        view.findViewById(R.id.sentence_speak_button_angry).setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				SentenceState.getSentence().clear();
-			}
-		});
-		return view;
-	}
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
 
-	public void onResume() {
-		super.onResume();
-		BusProvider.getInstance().register(this);
-	}
+                SpeakEngine.speak(SentenceState.getSentence().toString(), Emotion.ANGRY);
+            }
+        });
+        speakButton.setOnClickListener(new OnClickListener() {
 
-	@Subscribe
-	public void onSentenceChanged(SentenceChangedEvent event) {
-		mainContainer.removeAllViews();
-		for (String id : SentenceState.getSentence().getIds()) {
-			WordView view = new WordView(SmartSpeechApp.getContext());
-			view.setTileId(id);
-			mainContainer.addView(view);
-		}
-	}
+            @Override
+            public void onClick(View v) {
+                SpeakEngine.speak(SentenceState.getSentence().toString());
+            }
+        });
+        resetButton.setOnClickListener(new OnClickListener() {
 
-	public void onPause() {
-		super.onPause();
-		BusProvider.getInstance().unregister(this);
-	}
+            @Override
+            public void onClick(View v) {
+                SentenceState.getSentence().clear();
+            }
+        });
+        return view;
+    }
+
+    public void onResume() {
+        super.onResume();
+        BusProvider.getInstance().register(this);
+        reloadSentence();
+    }
+
+    @Subscribe
+    public void onSentenceChanged(SentenceChangedEvent event) {
+        reloadSentence();
+    }
+
+    private void reloadSentence() {
+        mainContainer.removeAllViews();
+        for (String id : SentenceState.getSentence().getIds()) {
+            WordView view = new WordView(SmartSpeechApp.getContext());
+            view.setTileId(id);
+            mainContainer.addView(view);
+        }
+    }
+
+    public void onPause() {
+        super.onPause();
+        BusProvider.getInstance().unregister(this);
+    }
 }

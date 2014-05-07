@@ -5,79 +5,114 @@ import java.util.List;
 
 import com.changclamor.roomtosprout.smartspeech.BusProvider;
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
-import com.changclamor.roomtosprout.smartspeech.fragments.GridScrollEvent;
 import com.changclamor.roomtosprout.smartspeech.fragments.SentenceChangedEvent;
-import com.changclamor.roomtosprout.smartspeech.fragments.TileClickedEvent;
-import com.squareup.otto.Subscribe;
 
 public class SentenceState {
-	private static SentenceState state = new SentenceState();
-	private List<String> tileIdsInOrder = new ArrayList<String>();
+    private static SentenceState state = new SentenceState();
 
-	public static SentenceState getSentence() {
-		return state;
-	}
+    private List<String> tileIdsInOrder = new ArrayList<String>();
 
-	/**
-	 * @return Get the entire sentence in string format. All words separated by
-	 *         space.
-	 */
-	public String toString() {
-		String sentence = "";
-		for (String id : tileIdsInOrder) {
-			sentence = String.format("%s %s", sentence, TilesController
-					.getInstance().getTile(id).getLabel());
-		}
-		sentence = sentence.trim();
-		return sentence;
-	}
+    public static SentenceState getSentence() {
+        return state;
+    }
 
-	public List<String> getIds() {
-		return tileIdsInOrder;
-	}
+    public int getSize() {
+        return tileIdsInOrder.size();
+    }
 
-	/**
-	 * There may be multiple items of the same ID, thus position should be used.
-	 * 
-	 * @param pos
-	 */
-	public void remove(int pos) {
-		tileIdsInOrder.remove(pos);
-		BusProvider.getInstance().post(new SentenceChangedEvent());
-	}
+    public boolean isEmpty() {
+        return tileIdsInOrder.isEmpty();
+    }
 
-	/**
-	 * Called after a tile has been clicked to add to end of sentence Sentence
-	 * can possibly reorder to see where this word would fit.
-	 * 
-	 * @param id
-	 */
-	public void add(String id) {
-		tileIdsInOrder.add(id);
-		BusProvider.getInstance().post(new SentenceChangedEvent());
-	}
+    /**
+     * @return Get the entire sentence in string format. All words separated by
+     *         space.
+     */
+    public String toString() {
+        String sentence = "";
+        for (String id : tileIdsInOrder) {
+            sentence = String.format("%s %s", sentence, TilesController.getInstance().getTile(id).getLabel());
+        }
+        sentence = sentence.trim();
+        return sentence;
+    }
 
-	/**
-	 * If sentence has all signs of a complete sentence (e.g. we can directly
-	 * announce it). Alternatively user can also click on speak if this returns
-	 * false.
-	 * 
-	 * @return
-	 */
-	public boolean isComplete() {
-		// Ready to speak
-		return true; // TODO
-	}
+    public List<String> getIds() {
+        return tileIdsInOrder;
+    }
 
-	public void clear() {
-		tileIdsInOrder.clear();
+    /**
+     * There may be multiple items of the same ID, thus position should be used.
+     * 
+     * @param pos
+     */
+    public void remove(int pos) {
+        tileIdsInOrder.remove(pos);
+        BusProvider.getInstance().post(new SentenceChangedEvent());
+    }
 
-		BusProvider.getInstance().post(new SentenceChangedEvent());
-	}
+    /**
+     * Called after a tile has been clicked to add to end of sentence Sentence
+     * can possibly reorder to see where this word would fit.
+     * 
+     * @param id
+     */
+    public void add(String id) {
+        tileIdsInOrder.add(id);
 
-	public void remove(String id) {
-		tileIdsInOrder.remove(id);
+        polishSentence();
+        BusProvider.getInstance().post(new SentenceChangedEvent());
+    }
 
-		BusProvider.getInstance().post(new SentenceChangedEvent());
-	}
+    private int getPronounPosition() {
+        // Find the first subject in sentence
+        for (int i = 0; i < tileIdsInOrder.size(); i++) {
+            Tile tile = TilesController.getInstance().getTile(tileIdsInOrder.get(i));
+            if (tile.getTags().contains("pronoun")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void polishSentence() {
+        int pronounPos = getPronounPosition();
+        if (pronounPos != -1) {
+            Tile tile = TilesController.getInstance().getTile(tileIdsInOrder.get(pronounPos));
+            if (pronounPos == 0) {
+                if (tile.getTags().contains("object")) {
+                    String id = tile.getForms().getSubject();
+                    replaceTileId(0, id);
+                }
+            } else if (tile.getTags().contains("subject")) {
+                tile.getForms().getSubject();
+            }
+        }
+    }
+
+    private void replaceTileId(int i, String id) {
+        tileIdsInOrder.set(i, id);
+    }
+
+    /**
+     * If sentence has all signs of a complete sentence (e.g. we can directly
+     * announce it). Alternatively user can also click on speak if this returns
+     * false.
+     * 
+     * @return
+     */
+    public boolean isComplete() {
+        // Ready to speak
+        return true; // TODO
+    }
+
+    public void clear() {
+        tileIdsInOrder.clear();
+        BusProvider.getInstance().post(new SentenceChangedEvent());
+    }
+
+    public void remove(String id) {
+        tileIdsInOrder.remove(id);
+        BusProvider.getInstance().post(new SentenceChangedEvent());
+    }
 }
