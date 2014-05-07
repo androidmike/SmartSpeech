@@ -8,8 +8,10 @@
     <com.changclamor.roomtosprout.smartspeech.ui.FlowLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/sentence_main_container"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_light"
+        android:padding="20dp"
         f:horizontalSpacing="6dip"
         f:verticalSpacing="12dip" >
     </com.changclamor.roomtosprout.smartspeech.ui.FlowLayout>
@@ -38,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Speak Sad" />
+            android:text="Speak Sad"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/sentence_speak_button_angry"

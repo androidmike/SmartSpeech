@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.changclamor.roomtosprout.smartspeech.controller.TilesController;
 import com.changclamor.roomtosprout.smartspeech.fragments.BrandingFragment;
 import com.changclamor.roomtosprout.smartspeech.fragments.HomeFragment;
+import com.changclamor.roomtosprout.smartspeech.fragments.SpeakCompleteEvent;
 import com.changclamor.roomtosprout.smartspeech.fragments.SpeakFragment;
 import com.changclamor.roomtosprout.smartspeech.fragments.TileClickedEvent;
 import com.changclamor.roomtosprout.smartspeech.fragments.TileWorkplaceFragment;
@@ -21,7 +23,9 @@ import com.squareup.otto.Subscribe;
 
 public class MainActivity extends FragmentActivity implements BrandingFragment.BrandingFragmentListener, OnInitListener {
     private BrandingFragment brandingFragment = new BrandingFragment();
+
     private SpeakFragment speakFragment = new SpeakFragment();
+
     private HomeFragment homeFragment = new HomeFragment();
 
     @Override
@@ -31,7 +35,7 @@ public class MainActivity extends FragmentActivity implements BrandingFragment.B
         Crashlytics.start(this);
         setContentView(R.layout.root_layout);
         showBrandingSequenceFragment();
-
+        SpeakEngine.init();
     }
 
     @Override
@@ -97,6 +101,8 @@ public class MainActivity extends FragmentActivity implements BrandingFragment.B
 
         if (event.id.equals("question")) {
             SentenceState.getSentence().add(event.id);
+
+            SpeakEngine.speak(SentenceState.getSentence().toString());
             showSpeakFragment(true, true);
         } else if (event.id.equals("speak")) {
             SpeakEngine.speak(SentenceState.getSentence().toString());
@@ -111,12 +117,18 @@ public class MainActivity extends FragmentActivity implements BrandingFragment.B
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main_viewgroup, speakFragment).commit();
         if (clear) {
-         //   SentenceState.getSentence().clear();
+            // SentenceState.getSentence().clear();
         }
         if (goHome) {
-         //  goHome();
+            // goHome();
         } else {
-          //  onBackPressed();
+            // onBackPressed();
         }
+    }
+
+    @Subscribe
+    public void onSpeechComplete(SpeakCompleteEvent event) {
+        SentenceState.getSentence().clear();
+        goHome();
     }
 }
