@@ -9,6 +9,9 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,16 +38,15 @@ public class SpeakFragment extends TrackingFragment {
     private void loadWords() {
         String[] words = SentenceState.getSentence().toString().split(" ");
 
-        Toast.makeText(SmartSpeechApp.getContext(), SentenceState.getSentence().toString(), Toast.LENGTH_SHORT).show();
         final List<TextView> textViews = new ArrayList<TextView>();
         for (String word : words) {
             TextView textView = new TextView(SmartSpeechApp.getContext());
             textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            textView.setPadding(40, 40, 40, 40);
+            textView.setPadding(20, 20, 20, 20);
             textView.setText(word);
+            textView.setTextSize(50f);
             textViews.add(textView);
-            Toast.makeText(SmartSpeechApp.getContext(), word, Toast.LENGTH_SHORT).show();
         }
         Handler handler = new Handler(Looper.getMainLooper());
         for (int i = 0; i < textViews.size(); i++) {
@@ -52,9 +54,15 @@ public class SpeakFragment extends TrackingFragment {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    Animation scaleAnimation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, .5f,
+                            Animation.RELATIVE_TO_SELF, .5f);
+
                     mainView.addView(textViews.get(index));
+                    scaleAnimation.setDuration(300);
+                    scaleAnimation.setInterpolator(new OvershootInterpolator());
+                    textViews.get(index).startAnimation(scaleAnimation);
                 }
-            }, 0);
+            }, i * 300);
         }
     }
 }
